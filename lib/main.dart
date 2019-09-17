@@ -1,32 +1,57 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-      home: Scaffold(
-        body: ListaTransferencias(),
-        appBar: AppBar(
-          title: Text('Transferências'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.add),
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
-    ));
+void main() => runApp(BytebankApp());
 
-class ListaTransferencias extends StatelessWidget {
+// App Principal
+class BytebankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ItemTransferencia(Transferencia(300.5, 3323)),
-        ItemTransferencia(Transferencia(2000.5, 4343)),
-        ItemTransferencia(Transferencia(1000, 1234))
-      ],
+    return MaterialApp(
+      home: Scaffold(
+        body: FormularioTransferencia(),
+      ),
+      debugShowCheckedModeBanner: true,
     );
   }
 }
 
+// Criando o Formulário de Transferencia
+class FormularioTransferencia extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Criando Transferência'),
+      ),
+      body: Text('data'),
+    );
+  }
+}
+
+// Criando a Lista de Transferencias
+class ListaTransferencias extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Transferências'),
+      ),
+      body: Column(
+        children: <Widget>[
+          ItemTransferencia(Transferencia(300.5, 3323)),
+          ItemTransferencia(Transferencia(2000.5, 4343)),
+          ItemTransferencia(Transferencia(1000, 1234))
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+// Criando um Item transferencia
 class ItemTransferencia extends StatelessWidget {
   final Transferencia _transferencia;
 
@@ -44,6 +69,7 @@ class ItemTransferencia extends StatelessWidget {
   }
 }
 
+// Model de Transferencia
 class Transferencia {
   final double valor;
   final int numeroConta;
